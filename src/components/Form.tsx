@@ -3,6 +3,9 @@ import { useState } from "react";
 import { Page } from "./Page";
 import { Button } from "@mui/material";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { next, prev } from "../store/formSlice";
 
 export interface TForm {
   pages: Page[];
@@ -10,8 +13,11 @@ export interface TForm {
 
 export const Form = ({ form }: { form: TForm }) => {
   const { pages } = form;
-  const [pageIndex, setPageIndex] = useState(0);
+
+  const pageIndex = useSelector((state: RootState) => state.form.page);
   const currentPage = pages[pageIndex];
+
+  const dispatch = useDispatch();
 
   const hasPrevPage = pageIndex > 0;
   const hasNextPage = pageIndex < pages.length - 1;
@@ -54,7 +60,7 @@ export const Form = ({ form }: { form: TForm }) => {
         <Button
           disabled={!hasPrevPage}
           onClick={() => {
-            setPageIndex((curr) => curr - 1);
+            dispatch(prev());
           }}
         >
           Prev
@@ -63,7 +69,7 @@ export const Form = ({ form }: { form: TForm }) => {
         <Button
           disabled={!hasNextPage}
           onClick={() => {
-            setPageIndex((curr) => curr + 1);
+            dispatch(next());
           }}
         >
           Next
