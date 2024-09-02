@@ -24,10 +24,12 @@ export const { useGetConfigQuery, useSubmitFormMutation } = formApi;
 
 export interface FormState {
   page: number;
+  form: Record<string, unknown>;
 }
 
 const initialState: FormState = {
   page: 0,
+  form: {},
 };
 
 export const formSlice = createSlice({
@@ -40,10 +42,16 @@ export const formSlice = createSlice({
     next: (state) => {
       state.page += 1;
     },
+    setForm: (state, action) => {
+      state.form = { ...state.form, ...action.payload };
+    },
+    clearForm: (state) => {
+      state.form = {};
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { prev, next } = formSlice.actions;
+export const { prev, next, setForm, clearForm } = formSlice.actions;
 
 export default formSlice.reducer;
