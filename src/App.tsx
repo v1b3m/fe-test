@@ -1,31 +1,21 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { Form, TForm } from "./components/Form";
+import { Form } from "./components/Form";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Provider } from "react-redux";
-import { store } from "./store";
+import { useGetConfigQuery } from "./store/formSlice";
 
 function App() {
-  const [form, setForm] = useState<TForm>({ pages: [] });
+  const { data = { pages: [] }, error, isLoading } = useGetConfigQuery("");
 
-  useEffect(() => {
-    fetch("/api/config")
-      .then((res) => res.json())
-      .then((json) => {
-        setForm(json as TForm);
-      });
-  }, []);
+  console.log({ data, error, isLoading });
 
   return (
-    <Provider store={store}>
-      <div id="root">
-        <Form form={form} />
-        <ToastContainer />
-      </div>
-    </Provider>
+    <div id="root">
+      <Form form={data} />
+      <ToastContainer />
+    </div>
   );
 }
 
