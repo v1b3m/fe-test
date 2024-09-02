@@ -1,11 +1,10 @@
-import Box from "@mui/material/Box";
-import { useState } from "react";
-import { Page } from "./Page";
 import { Button } from "@mui/material";
-import { toast } from "react-toastify";
+import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { RootState } from "../store";
 import { next, prev } from "../store/formSlice";
+import { Page } from "./Page";
 
 export interface TForm {
   pages: Page[];
