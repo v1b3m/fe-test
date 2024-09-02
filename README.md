@@ -1,6 +1,6 @@
 # FE TEST
 
-This app was built with [vite](https://vitejs.dev/) and uses bun as a dependency manager
+This app was built with [vite](https://vitejs.dev/) and uses [bun](https://bun.sh/) as a dependency manager
 
 ### To run the app
 
