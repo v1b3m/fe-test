@@ -9,12 +9,17 @@ export interface TForm {
 
 export const Form = ({ form }: { form: TForm }) => {
   const { pages } = form;
-  console.log({ form });
   const [pageIndex, setPageIndex] = useState(0);
   const currentPage = pages[pageIndex];
 
   const hasPrevPage = pageIndex > 0;
   const hasNextPage = pageIndex < pages.length - 1;
+
+  const handleSubmit = (data: Record<string, unknown>) => {
+    fetch("/api/submit", { body: JSON.stringify(data), method: "POST" })
+      .then((res) => res.json())
+      .then((json) => console.log({ json }));
+  };
 
   return (
     <Box
@@ -30,6 +35,7 @@ export const Form = ({ form }: { form: TForm }) => {
       {!hasNextPage && (
         <Button
           onClick={() => {
+            handleSubmit({ foo: "bar" });
             console.log("Submit");
           }}
         >

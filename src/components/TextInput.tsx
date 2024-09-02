@@ -8,5 +8,12 @@ export interface TTextInput extends BaseInput {
 }
 
 export const TextInput = ({ field }: { field: TTextInput }) => {
-  return <TextField label={field.label} style={{ marginBottom: 10 }} />;
+  return (
+    <TextField
+      label={field.label}
+      style={{ marginBottom: 10 }}
+      required={field.required}
+      name={field.name}
+    />
+  );
 };

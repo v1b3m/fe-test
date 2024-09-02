@@ -28,6 +28,8 @@ export const SelectInput = ({ field }: { field: TSelectInput }) => {
       label={field.label}
       onChange={handleChange}
       style={{ marginBottom: 10 }}
+      required={field.required}
+      name={field.name}
     >
       {field.options.map((option) => (
         <MenuItem key={option} value={option}>

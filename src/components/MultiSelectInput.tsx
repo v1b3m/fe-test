@@ -29,6 +29,8 @@ export const MultiSelectInput = ({ field }: { field: TMultiSelectInput }) => {
       onChange={handleChange}
       input={<OutlinedInput label="Multiple Select" />}
       style={{ marginBottom: 10 }}
+      required={field.required}
+      name={field.name}
     >
       {field.options.map((name) => (
         <MenuItem key={name} value={name}>
