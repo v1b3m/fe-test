@@ -1,4 +1,10 @@
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import React from "react";
 
 export interface BaseInput {
@@ -21,21 +27,24 @@ export const SelectInput = ({ field }: { field: TSelectInput }) => {
   };
 
   return (
-    <Select
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
-      value={option}
-      label={field.label}
-      onChange={handleChange}
-      style={{ marginBottom: 10 }}
-      required={field.required}
-      name={field.name}
-    >
-      {field.options.map((option) => (
-        <MenuItem key={option} value={option}>
-          {option}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">{field.label}</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={option}
+        label={field.label}
+        onChange={handleChange}
+        style={{ marginBottom: 10 }}
+        required={field.required}
+        name={field.name}
+      >
+        {field.options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
