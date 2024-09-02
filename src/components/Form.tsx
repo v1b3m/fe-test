@@ -14,6 +14,7 @@ export const Form = ({ form }: { form: TForm }) => {
   const { pages } = form;
 
   const pageIndex = useSelector((state: RootState) => state.form.page);
+  const data = useSelector((state: RootState) => state.form.form);
   const currentPage = pages[pageIndex];
 
   const dispatch = useDispatch();
@@ -44,8 +45,7 @@ export const Form = ({ form }: { form: TForm }) => {
       {!hasNextPage && (
         <Button
           onClick={() => {
-            handleSubmit({ foo: "bar" });
-            console.log("Submit");
+            handleSubmit(data);
           }}
         >
           Submit
