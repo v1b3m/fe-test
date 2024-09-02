@@ -6,6 +6,8 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { setForm } from "../store/formSlice";
 
 export interface BaseInput {
   name: string;
@@ -21,9 +23,11 @@ export interface TSelectInput extends BaseInput {
 
 export const SelectInput = ({ field }: { field: TSelectInput }) => {
   const [option, setOption] = React.useState("");
+  const dispatch = useDispatch();
 
   const handleChange = (event: SelectChangeEvent) => {
     setOption(event.target.value);
+    dispatch(setForm({ [field.name]: event.target.value }));
   };
 
   return (

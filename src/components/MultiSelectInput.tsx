@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { BaseInput } from "./SelectInput";
+import { useDispatch } from "react-redux";
+import { setForm } from "../store/formSlice";
 
 export interface TMultiSelectInput extends BaseInput {
   label: string;
@@ -19,9 +21,11 @@ export interface TMultiSelectInput extends BaseInput {
 
 export const MultiSelectInput = ({ field }: { field: TMultiSelectInput }) => {
   const [selected, setSelected] = useState<string[]>([]);
+  const dispatch = useDispatch();
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelected(event.target.value as unknown as string[]);
+    dispatch(setForm({ [field.name]: event.target.value }));
   };
 
   return (
