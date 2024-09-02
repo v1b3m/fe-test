@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import { Page } from "./Page";
 import { Button } from "@mui/material";
+import { toast } from "react-toastify";
 
 export interface TForm {
   pages: Page[];
@@ -18,7 +19,14 @@ export const Form = ({ form }: { form: TForm }) => {
   const handleSubmit = (data: Record<string, unknown>) => {
     fetch("/api/submit", { body: JSON.stringify(data), method: "POST" })
       .then((res) => res.json())
-      .then((json) => console.log({ json }));
+      .then((json) => {
+        console.log({ json });
+        toast.success("Successfully submitted form!");
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to submit form");
+      });
   };
 
   return (

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Box } from "@mui/material";
 import { Form, TForm } from "./components/Form";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
-  const [count, setCount] = useState(0);
   const [form, setForm] = useState<TForm>({ pages: [] });
 
   useEffect(() => {
@@ -18,6 +19,7 @@ function App() {
   return (
     <div id="root">
       <Form form={form} />
+      <ToastContainer />
     </div>
   );
 }
