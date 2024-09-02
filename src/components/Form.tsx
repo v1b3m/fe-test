@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { RootState } from "../store";
-import { next, prev } from "../store/formSlice";
+import { next, prev, useSubmitFormMutation } from "../store/formSlice";
 import { Page } from "./Page";
 
 export interface TForm {
@@ -21,17 +21,12 @@ export const Form = ({ form }: { form: TForm }) => {
   const hasPrevPage = pageIndex > 0;
   const hasNextPage = pageIndex < pages.length - 1;
 
+  const [submitForm, result] = useSubmitFormMutation({});
+
+  console.log({ result });
+
   const handleSubmit = (data: Record<string, unknown>) => {
-    fetch("/api/submit", { body: JSON.stringify(data), method: "POST" })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log({ json });
-        toast.success("Successfully submitted form!");
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Failed to submit form");
-      });
+    submitForm(data);
   };
 
   return (
