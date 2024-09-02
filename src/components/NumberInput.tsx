@@ -16,6 +16,8 @@ export const NumberInput = ({ field }: { field: TNumberInput }) => {
       label={field.label}
       style={{ marginBottom: 10 }}
       slotProps={{ htmlInput: { min: field.min, max: field.max } }}
+      required={field.required}
+      name={field.name}
     />
   );
 };

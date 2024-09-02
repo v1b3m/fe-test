@@ -1,4 +1,6 @@
 import {
+  FormControl,
+  InputLabel,
   MenuItem,
   OutlinedInput,
   Select,
@@ -23,17 +25,23 @@ export const MultiSelectInput = ({ field }: { field: TMultiSelectInput }) => {
   };
 
   return (
-    <Select
-      multiple
-      value={selected}
-      onChange={handleChange}
-      input={<OutlinedInput label="Multiple Select" />}
-    >
-      {field.options.map((name) => (
-        <MenuItem key={name} value={name}>
-          {name}
-        </MenuItem>
-      ))}
-    </Select>
+    <FormControl fullWidth>
+      <InputLabel id="demo-simple-select-label">{field.label}</InputLabel>
+      <Select
+        multiple
+        value={selected}
+        onChange={handleChange}
+        input={<OutlinedInput label="Multiple Select" />}
+        style={{ marginBottom: 10 }}
+        required={field.required}
+        name={field.name}
+      >
+        {field.options.map((name) => (
+          <MenuItem key={name} value={name}>
+            {name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 };

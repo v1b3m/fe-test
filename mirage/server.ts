@@ -4,6 +4,16 @@ new Server({
   routes() {
     this.namespace = "api";
 
+    this.post("/submit", (schema, request) => {
+      let attrs = JSON.parse(request.requestBody);
+
+      return {
+        success: true,
+        message: "Form submitted successfully",
+        attrs,
+      };
+    });
+
     this.get("/config", () => {
       const pages = [
         {
