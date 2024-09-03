@@ -28,6 +28,7 @@ export const Form = ({ form }: { form: TForm }) => {
 
   const handleSubmit = (data: Record<string, unknown>) => {
     submitForm(data);
+
     toast.success("Form submitted successfully");
   };
 
