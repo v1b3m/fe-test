@@ -10,21 +10,16 @@ export type TField =
   | TMultiSelectInput;
 
 export const Field = ({ field }: { field: TField }) => {
-  if (field.type === "text") {
-    return <TextInput field={field} />;
+  switch (field.type) {
+    case "text":
+      return <TextInput field={field} />;
+    case "number":
+      return <NumberInput field={field} />;
+    case "select":
+      return <SelectInput field={field} />;
+    case "multi-select":
+      return <MultiSelectInput field={field} />;
+    default:
+      return null;
   }
-
-  if (field.type === "number") {
-    return <NumberInput field={field} />;
-  }
-
-  if (field.type === "select") {
-    return <SelectInput field={field} />;
-  }
-
-  if (field.type === "multi-select") {
-    return <MultiSelectInput field={field} />;
-  }
-
-  return null;
 };
